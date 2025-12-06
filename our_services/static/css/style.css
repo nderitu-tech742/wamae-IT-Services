@@ -1,0 +1,4 @@
+body{font-family:Arial,sans-serif;margin:20px;}
+nav a{margin-right:15px;text-decoration:none;font-weight:bold;}
+.service{display:inline-block;margin:10px;text-align:center;}
+.service img{width:300px;height:200px;border:1px solid #ccc;}
