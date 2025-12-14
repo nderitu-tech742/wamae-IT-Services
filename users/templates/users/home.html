@@ -1,0 +1,202 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block title %}Welcome - Nderitu Tech{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION (half-page background) -->
+<section style="
+    height:90vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    overflow:hidden;
+">
+
+    <!-- BACKGROUND IMAGE -->
+    <div style="
+        position:absolute;
+        top:0; left:0;
+        width:100%; height:100%;
+        background-image: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1500&q=80');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: brightness(0.45);
+        z-index:0;
+    "></div>
+
+    <!-- DARK OVERLAY -->
+    <div style="
+        position:absolute;
+        top:0; left:0;
+        width:100%; height:100%;
+        background: rgba(0,0,0,0.25);
+        backdrop-filter: blur(1px);
+        z-index:1;
+    "></div>
+
+    <!-- HERO CONTENT -->
+    <div style="
+        position:relative;
+        max-width:700px;
+        padding:30px;
+        border-radius:12px;
+        background: rgba(0,0,0,0.25);
+        box-shadow:0 8px 20px rgba(0,0,0,0.3);
+        z-index:2;
+    ">
+        <h1 style="font-size:3.5rem; font-weight:700; margin-bottom:1rem; line-height:1.2;">
+            Welcome to <span style="color:#0d6efd;">Nderitu Tech</span>
+        </h1>
+        <p style="font-size:1.3rem; margin-bottom:2rem; line-height:1.6;">
+            Your One-Stop IT & Device Marketplace.  
+            Professional. Reliable. Affordable.
+        </p>
+        <div>
+            <a href="{% url 'login' %}" style="
+                background:#0d6efd;
+                padding:14px 36px;
+                color:#fff;
+                border-radius:10px;
+                margin-right:20px;
+                font-weight:600;
+                font-size:1rem;
+                text-decoration:none;
+                transition:0.3s;
+            " onmouseover="this.style.background='#0b5ed7'" onmouseout="this.style.background='#0d6efd'">Login</a>
+
+            <a href="{% url 'register' %}" style="
+                background:#198754;
+                padding:14px 36px;
+                color:#fff;
+                border-radius:10px;
+                font-weight:600;
+                font-size:1rem;
+                text-decoration:none;
+                transition:0.3s;
+            " onmouseover="this.style.background='#146c43'" onmouseout="this.style.background='#198754'">Register</a>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section style="padding:5rem 2rem; background:#fff;">
+    <h2 style="text-align:center; font-size:2.8rem; margin-bottom:3rem; font-weight:700; color:#333;">
+        Our Services
+    </h2>
+
+    <div style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap:2.5rem;
+        max-width:1200px;
+        margin:auto;
+    ">
+
+        <!-- CARD 1 -->
+        <div style="
+            background:#f9f9f9;
+            padding:2.5rem 2rem;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 8px 25px rgba(0,0,0,0.1);
+            transition:0.3s;
+        " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)'" 
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'">
+            <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" style="width:80px; margin-bottom:1rem;">
+            <h3 style="color:#0d6efd; margin-bottom:0.5rem; font-size:1.4rem; font-weight:600;">Web Design</h3>
+            <p style="color:#555; line-height:1.6;">Custom, modern, responsive websites for businesses.</p>
+        </div>
+
+        <!-- CARD 2 -->
+        <div style="
+            background:#f9f9f9;
+            padding:2.5rem 2rem;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 8px 25px rgba(0,0,0,0.1);
+            transition:0.3s;
+        " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)'" 
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'">
+            <img src="https://cdn-icons-png.flaticon.com/512/2910/2910760.png" style="width:80px; margin-bottom:1rem;">
+            <h3 style="color:#0d6efd; margin-bottom:0.5rem; font-size:1.4rem; font-weight:600;">Networking</h3>
+            <p style="color:#555; line-height:1.6;">Home & office networking — fast, reliable & secure.</p>
+        </div>
+
+        <!-- CARD 3 -->
+        <div style="
+            background:#f9f9f9;
+            padding:2.5rem 2rem;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 8px 25px rgba(0,0,0,0.1);
+            transition:0.3s;
+        " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)'" 
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'">
+            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" style="width:80px; margin-bottom:1rem;">
+            <h3 style="color:#0d6efd; margin-bottom:0.5rem; font-size:1.4rem; font-weight:600;">IT Support</h3>
+            <p style="color:#555; line-height:1.6;">Quick, professional computer & device troubleshooting.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section style="padding:5rem 2rem; background:#fff;">
+    <h2 style="text-align:center; font-size:2.8rem; margin-bottom:3rem; font-weight:700; color:#333;">
+        Featured Products
+    </h2>
+
+    <div style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap:2.5rem;
+        max-width:1200px;
+        margin:auto;
+    ">
+        <!-- Product 1 -->
+        <div style="border-radius:15px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition:0.3s;" 
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:1rem;">
+                <h4 style="font-weight:600; margin-bottom:0.5rem;">High-End Laptop</h4>
+                <p style="color:#555;">Powerful gaming and work laptop for professionals.</p>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div style="border-radius:15px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition:0.3s;" 
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'">
+            <img src="https://images.unsplash.com/photo-1581090700227-5f1b3c30e3fc?auto=format&fit=crop&w=800&q=80" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:1rem;">
+                <h4 style="font-weight:600; margin-bottom:0.5rem;">Office Router</h4>
+                <p style="color:#555;">Fast and reliable networking device for small offices.</p>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div style="border-radius:15px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition:0.3s;" 
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.15)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.1)'">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding:1rem;">
+                <h4 style="font-weight:600; margin-bottom:0.5rem;">Tablet Device</h4>
+                <p style="color:#555;">High-performance tablet for work and entertainment.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:2rem; text-align:center; background:#0d6efd; color:white; font-weight:500;">
+    © 2025 Nderitu Tech. All Rights Reserved.
+</footer>
+
+{% endblock %}

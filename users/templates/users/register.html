@@ -1,0 +1,76 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Register - Nderitu Tech{% endblock %}
+
+{% block content %}
+
+<section style="
+    background-color:#f0f2f5;
+    min-height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+">
+
+    <div style="
+        background:#fff;
+        padding:3rem;
+        border-radius:12px;
+        width:100%;
+        max-width:450px;
+        box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    ">
+
+        <h2 style="text-align:center; color:#0d6efd; margin-bottom:2rem;">Create Account</h2>
+
+        <!-- Display Django messages -->
+        {% if messages %}
+            <ul style="margin-bottom:1rem; color:red;">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="username" style="font-weight:600;">Username</label>
+            <input type="text" name="username" id="username" required
+                style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:6px; border:1px solid #ccc;">
+
+            <label for="email" style="font-weight:600;">Email</label>
+            <input type="email" name="email" id="email" required
+                style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:6px; border:1px solid #ccc;">
+
+            <label for="password1" style="font-weight:600;">Password</label>
+            <input type="password" name="password1" id="password1" required
+                style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:6px; border:1px solid #ccc;">
+
+            <label for="password2" style="font-weight:600;">Confirm Password</label>
+            <input type="password" name="password2" id="password2" required
+                style="width:100%; padding:0.8rem; margin-bottom:1.5rem; border-radius:6px; border:1px solid #ccc;">
+
+            <button type="submit" style="
+                width:100%;
+                padding:0.8rem;
+                background:#0d6efd;
+                color:#fff;
+                font-weight:600;
+                border:none;
+                border-radius:8px;
+                cursor:pointer;
+            ">Register</button>
+        </form>
+
+        <p style="text-align:center; margin-top:1rem;">
+            Already have an account? <a href="{% url 'login' %}" style="color:#0d6efd; font-weight:600;">Login</a>
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

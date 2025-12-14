@@ -1,0 +1,57 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Payment - Nderitu Tech{% endblock %}
+
+{% block content %}
+
+<div style="max-width:800px; margin:auto; padding:2rem; background:#fff; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    
+    <h2 style="color:#198754; margin-bottom:1rem;">Complete Payment</h2>
+    <p>Hello, <strong>{{ request.user.username }}</strong>. You are about to pay for your order <strong>#{{ order.id }}</strong>.</p>
+
+    <table style="width:100%; margin-bottom:1rem; border-collapse:collapse;">
+        <tr style="background:#198754; color:#fff;">
+            <th style="padding:10px; border:1px solid #ddd;">Product</th>
+            <th style="padding:10px; border:1px solid #ddd;">Quantity</th>
+            <th style="padding:10px; border:1px solid #ddd;">Price</th>
+        </tr>
+        {% for item in order.items.all %}
+        <tr>
+            <td style="padding:8px; border:1px solid #ddd;">{{ item.product.name }}</td>
+            <td style="padding:8px; border:1px solid #ddd;">{{ item.quantity }}</td>
+            <td style="padding:8px; border:1px solid #ddd;">KSh {{ item.product.price }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2" style="padding:8px; border:1px solid #ddd; text-align:right;"><strong>Total:</strong></td>
+            <td style="padding:8px; border:1px solid #ddd;"><strong>KSh {{ order.total_amount }}</strong></td>
+        </tr>
+    </table>
+
+    <form method="POST" action="{% url 'process_payment' order.id %}">
+        {% csrf_token %}
+        <label for="method">Select Payment Method:</label>
+        <select name="method" id="method" style="padding:8px; width:100%; margin:0.5rem 0; border-radius:5px; border:1px solid #ccc;">
+            <option value="mpesa">Mpesa</option>
+            <option value="card">Card</option>
+            <option value="cash">Cash</option>
+        </select>
+
+        <button type="submit" style="
+            margin-top:1rem;
+            background:#198754;
+            color:#fff;
+            padding:10px 20px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-weight:600;
+        ">Pay Now</button>
+    </form>
+
+    <div style="margin-top:1rem;">
+        <a href="{% url 'user_dashboard' %}" style="color:#dc3545;">Back to Dashboard</a>
+    </div>
+</div>
+
+{% endblock %}

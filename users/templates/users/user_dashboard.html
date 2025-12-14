@@ -1,0 +1,229 @@
+{% extends 'users/base.html' %}
+
+{% block title %}User Dashboard - Nderitu Tech{% endblock %}
+
+{% block content %}
+
+<!-- DISPLAY MESSAGES -->
+{% if messages %}
+  <div style="max-width:1200px; margin:auto; margin-bottom:1rem;">
+    {% for message in messages %}
+      <div style="
+          padding:10px;
+          border-radius:6px;
+          margin-bottom:0.5rem;
+          color:#fff;
+          background-color:{% if message.tags == 'success' %}#198754{% elif message.tags == 'error' %}#dc3545{% else %}#6c757d{% endif %};
+      ">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<!-- PAGE HEADER WITH SERVER ROOM BACKGROUND -->
+<section style="
+    background-image: linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.6)
+    ),
+    url('https://images.unsplash.com/photo-1581092334434-30a3c1e7f9c1');
+    background-size: cover;
+    background-position: center;
+    color:#fff;
+    padding:3rem 1.5rem;
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:2rem;
+">
+    <h1 style="font-size:2.2rem; font-weight:700;">User Dashboard</h1>
+    <p style="font-size:1.1rem;">Welcome, {{ request.user.username }}</p>
+</section>
+
+<!-- SIDE PIN MENU -->
+<div id="user-pin-menu" style="
+    position:fixed;
+    top:50%;
+    right:0;
+    transform:translateY(-50%);
+    background:#198754;
+    border-radius:8px 0 0 8px;
+    overflow:hidden;
+    z-index:999;
+">
+    <button onclick="toggleMenu()" style="
+        display:block;
+        background:#198754;
+        color:#fff;
+        border:none;
+        padding:12px;
+        width:60px;
+        cursor:pointer;
+        font-weight:700;
+    ">☰</button>
+    <div id="pin-menu-buttons" style="display:none; flex-direction:column;">
+        <a href="#services" style="
+            padding:10px;
+            color:#fff;
+            text-decoration:none;
+            display:block;
+            border-top:1px solid rgba(255,255,255,0.3);
+        ">Services</a>
+        <a href="#my-orders" style="
+            padding:10px;
+            color:#fff;
+            text-decoration:none;
+            display:block;
+            border-top:1px solid rgba(255,255,255,0.3);
+        ">My Orders</a>
+    </div>
+</div>
+
+<!-- SERVICES / PRODUCTS -->
+<div id="services" style="max-width:1200px; margin:auto; margin-bottom:2rem;">
+    <h3 style="margin-bottom:1rem;">Our IT Devices & Services</h3>
+    <div style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center;">
+
+        <!-- Laptop -->
+        <div style="background:#fff; padding:1rem; width:220px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
+            <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=150" alt="Laptop" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+            <h4 style="color:#198754; margin-top:0.5rem;">Laptop</h4>
+            <p style="font-size:0.9rem; color:#555;">High-performance laptops for work & gaming.</p>
+            <form method="POST" action="{% url 'place_order' 1 %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top:0.5rem; background:#198754; color:#fff; padding:6px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- Desktop -->
+        <div style="background:#fff; padding:1rem; width:220px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
+            <img src="https://images.pexels.com/photos/196655/pexels-photo-196655.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Desktop" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+            <h4 style="color:#198754; margin-top:0.5rem;">Desktop</h4>
+            <p style="font-size:0.9rem; color:#555;">Powerful desktops for office & gaming setups.</p>
+            <form method="POST" action="{% url 'place_order' 2 %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top:0.5rem; background:#198754; color:#fff; padding:6px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- Smartphone -->
+        <div style="background:#fff; padding:1rem; width:220px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
+            <img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Smartphone" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+            <h4 style="color:#198754; margin-top:0.5rem;">Smartphone</h4>
+            <p style="font-size:0.9rem; color:#555;">Latest mobile phones with advanced features.</p>
+            <form method="POST" action="{% url 'place_order' 3 %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top:0.5rem; background:#198754; color:#fff; padding:6px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- Tablet -->
+        <div style="background:#fff; padding:1rem; width:220px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
+            <img src="https://images.pexels.com/photos/5077042/pexels-photo-5077042.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Tablet" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+            <h4 style="color:#198754; margin-top:0.5rem;">Tablet</h4>
+            <p style="font-size:0.9rem; color:#555;">Portable tablets for work, education & entertainment.</p>
+            <form method="POST" action="{% url 'place_order' 4 %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top:0.5rem; background:#198754; color:#fff; padding:6px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- Server -->
+        <div style="background:#fff; padding:1rem; width:220px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
+            <img src="https://images.pexels.com/photos/257897/pexels-photo-257897.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Server" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+            <h4 style="color:#198754; margin-top:0.5rem;">Server</h4>
+            <p style="font-size:0.9rem; color:#555;">Secure servers & networking hardware for businesses.</p>
+            <form method="POST" action="{% url 'place_order' 5 %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top:0.5rem; background:#198754; color:#fff; padding:6px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+        <!-- Web Programming -->
+        <div style="background:#fff; padding:1rem; width:220px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center;">
+            <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Web Programming" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+            <h4 style="color:#198754; margin-top:0.5rem;">Web Programming</h4>
+            <p style="font-size:0.9rem; color:#555;">Modern web programming & software development solutions.</p>
+            <form method="POST" action="{% url 'place_order' 6 %}">
+                {% csrf_token %}
+                <button type="submit" style="margin-top:0.5rem; background:#198754; color:#fff; padding:6px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:600;">
+                    Place Order
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- USER ORDERS -->
+<div id="my-orders" style="max-width:1200px; margin:auto; margin-bottom:2rem;">
+    <h3>My Orders</h3>
+    <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+        <tr style="background:#198754; color:#fff;">
+            <th>Order ID</th>
+            <th>Products</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Payment</th>
+        </tr>
+
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>
+                {% for item in order.items.all %}
+                    {{ item.product.name }}<br>
+                {% endfor %}
+            </td>
+            <td>
+                {% for item in order.items.all %}
+                    {{ item.quantity }}<br>
+                {% endfor %}
+            </td>
+            <td>{{ order.status|capfirst }}</td>
+            <td>
+                {% if order.payment %}
+                    {{ order.payment.status|capfirst }}
+                {% else %}
+                    Pending
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" style="text-align:center;">No orders placed yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- LOGOUT -->
+<div style="text-align:center; margin-top:3rem;">
+    <a href="{% url 'logout' %}" style="
+        background:#dc3545;
+        color:#fff;
+        padding:0.8rem 2rem;
+        border-radius:8px;
+        font-weight:600;
+        text-decoration:none;
+    ">Logout</a>
+</div>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('pin-menu-buttons');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+}
+</script>
+
+{% endblock %}

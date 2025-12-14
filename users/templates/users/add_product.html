@@ -1,0 +1,55 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Add Product - Nderitu Tech{% endblock %}
+
+{% block content %}
+<!-- BACKGROUND SECTION -->
+<section style="
+    background-image: url('https://images.unsplash.com/photo-1581090700227-5f1b3c30e3fc?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+    <div style="
+        background: rgba(0,0,0,0.6);
+        padding: 3rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        color: white;
+    ">
+        <h1 style="text-align:center; margin-bottom:2rem;">Add New Product</h1>
+        
+        <form method="POST" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:1rem;">
+            {% csrf_token %}
+            
+            <label for="name">Product Name</label>
+            <input type="text" name="name" id="name" required style="padding:10px; border-radius:6px; border:none;">
+
+            <label for="description">Description</label>
+            <textarea name="description" id="description" rows="4" required style="padding:10px; border-radius:6px; border:none;"></textarea>
+
+            <label for="price">Price (USD)</label>
+            <input type="number" name="price" id="price" step="0.01" required style="padding:10px; border-radius:6px; border:none;">
+
+            <label for="image">Product Image</label>
+            <input type="file" name="image" id="image" required style="padding:5px; border-radius:6px; border:none;">
+
+            <button type="submit" style="
+                padding:12px;
+                background-color:#198754;
+                color:white;
+                font-weight:bold;
+                border:none;
+                border-radius:8px;
+                cursor:pointer;
+                margin-top:1rem;
+            ">Add Product</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
